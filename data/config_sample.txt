@@ -1,0 +1,11 @@
+# Cau hinh mo phong mau - gia tri minh hoa, nhom co the dieu chinh
+simulation_minutes=480
+open_rooms=4
+arrival_seed=20261109
+priority_enabled=true
+aging_enabled=false
+aging_interval=30
+abandon_after_minutes=90
+service_duration_min=5
+service_duration_max=20
+average_service_time=12
