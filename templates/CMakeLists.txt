@@ -6,7 +6,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
 # Bo sung cac tep .cpp khi nhom da tao module tuong ung.
-add_executable(clinic_queue
+add_executable(BT_CTDL)
     main.cpp
     src/models/Patient.cpp
     src/models/Room.cpp
