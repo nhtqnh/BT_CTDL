@@ -1,0 +1,3 @@
+/Users/nhtqnh/Documents/BT_CTDL/build/CMakeFiles/BT_CTDL.dir
+/Users/nhtqnh/Documents/BT_CTDL/build/CMakeFiles/edit_cache.dir
+/Users/nhtqnh/Documents/BT_CTDL/build/CMakeFiles/rebuild_cache.dir
