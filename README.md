@@ -7,7 +7,7 @@ Phiên bản: 1.0 · Phạm vi: Đồ án môn Cấu trúc dữ liệu và Giả
 
 Phần mềm mô phỏng quy trình tiếp nhận và gọi bệnh nhân tại nhiều phòng khám. Mỗi phòng khám quản lý hai hàng đợi: hàng đợi thường bằng **danh sách liên kết đơn** và hàng đợi ưu tiên bằng **heap nhị phân trên mảng**. Hệ thống mô phỏng thời gian theo phút, ghi nhận thời gian chờ, thống kê kết quả và so sánh các kịch bản vận hành.
 
-Đây là bộ tài liệu thiết kế/khởi tạo dự án, không phải bản chương trình nghiệp vụ đã hoàn thiện. Cây thư mục trong `docs/PROJECT_DESIGN.md` là kiến trúc mục tiêu để nhóm triển khai.
+Đây là bộ tài liệu thiết kế/khởi tạo dự án, không phải bản chương trình đã hoàn thiện.
 
 ## 2. Phạm vi và ràng buộc chính
 
@@ -41,7 +41,7 @@ Ngoài ra, cấu hình ngưỡng `T` để bệnh nhân bỏ về khi chờ quá
 ## 4. Cấu trúc thư mục mục tiêu
 
 ```text
-clinic-queue-simulator/
+BT-CTDL-simulator/
 ├── CMakeLists.txt                 # Cấu hình build C++17
 ├── README.md                      # Hướng dẫn dự án
 ├── main.cpp                       # Điểm bắt đầu, khởi tạo menu
@@ -77,13 +77,13 @@ cmake -S . -B build -DCMAKE_CXX_STANDARD=17
 cmake --build build
 ```
 
-Sau khi build, chạy executable được tạo trong `build/` (tên đích dự kiến: `clinic_queue`). Trên macOS/Linux thường là:
+Sau khi build, chạy executable được tạo trong `build/` (tên đích dự kiến: `BT_CTDL`). Trên macOS/Linux thường là:
 
 ```bash
 ./build/clinic_queue
 ```
 
-Trên Windows, chạy `build\Debug\clinic_queue.exe` hoặc `build\clinic_queue.exe` tùy generator.
+Trên Windows, chạy `build\Debug\BT_CTDL.exe` hoặc `build\BT_CTDL.exe` tùy generator.
 
 **Lưu ý:** gói hiện tại là tài liệu thiết kế và dữ liệu mẫu; chưa có đầy đủ mã nguồn `.cpp` nên chưa thể build thành chương trình mô phỏng hoàn chỉnh.
 
@@ -97,10 +97,9 @@ Trên Windows, chạy `build\Debug\clinic_queue.exe` hoặc `build\clinic_queue.
 
 ## 7. Tài liệu trong gói
 
-- `docs/PROJECT_DESIGN.md`: đặc tả, kiến trúc, thuật toán, độ phức tạp, luồng mô phỏng và kiểm thử.
-- `docs/TEAM_ASSIGNMENT.md`: phân công 4 thành viên, workflow, mốc bàn giao và quy tắc Git.
 - `data/patients_sample.txt`: 30 bản ghi dữ liệu giả lập để thử nghiệm.
 - `data/patients_large.txt`: 10.000 bản ghi giả lập để benchmark.
 - `data/config_sample.txt`: cấu hình mô phỏng mẫu.
 - `templates/CMakeLists.txt`: mẫu cấu hình CMake để nhóm điều chỉnh khi mã nguồn được tạo.
-- `PROJECT_DESIGN.docx`: bản trình bày Word của tài liệu thiết kế tổng hợp.
+
+## 8. Tài liệu thiết kế Interface cho cả nhóm:** [Xem chi tiết tại interface.md](./interface.md)
