@@ -1,4 +1,4 @@
-#ifndef LINKED_QUEUE_H
+#pragma once
 #define LINKED_QUEUE_H
 
 #include <string>

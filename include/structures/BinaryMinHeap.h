@@ -1,4 +1,4 @@
-#ifndef BINARY_MIN_HEAP_H
+#pragma once
 #define BINARY_MIN_HEAP_H
 
 #include <string>
