@@ -1,6 +1,4 @@
 #pragma once
-#define SIMULATION_ENGINE_H
-
 #include "models/Patient.h"
 #include "models/SimulationConfig.h"
 #include "services/Hospital.h"

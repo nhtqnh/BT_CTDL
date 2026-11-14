@@ -1,5 +1,4 @@
 #pragma once
-#define LINKED_QUEUE_H
 #include <string>
 #include "models/Patient.h"
 

@@ -1,8 +1,7 @@
 #pragma once
-
 #include <string>
-#include "Patient.h"   
-#include "Room.h"     
+#include "models/Patient.h"
+#include "models/Room.h"    
 // ============================================
 // MODULE: Hospital Management (Business Logic)
 //---------------------------------------------

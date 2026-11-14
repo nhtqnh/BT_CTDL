@@ -1,6 +1,4 @@
 #pragma once
-#define BINARY_MIN_HEAP_H
-
 #include <string>
 #include "models/Patient.h"
 

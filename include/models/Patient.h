@@ -1,5 +1,4 @@
 #pragma once
-#define PATIENT_H
 #include <string>
 enum class PriorityLevel {
     EMERGENCY = 1,

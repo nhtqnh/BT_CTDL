@@ -1,5 +1,4 @@
 #pragma once
-#define STATISTICS_H
 
 struct PriorityStats {
     int totalServed = 0;

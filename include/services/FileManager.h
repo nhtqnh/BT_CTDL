@@ -1,8 +1,6 @@
 #pragma once
-
 #include <string>
 #include <vector>
-
 #include "models/Patient.h"
 #include "models/SimulationConfig.h"
 

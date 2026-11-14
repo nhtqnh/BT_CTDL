@@ -1,5 +1,4 @@
 #pragma once
-#define SIMULATION_CONFIG_H
 
 struct SimulationConfig {
     int totalSimulationMinutes = 480;

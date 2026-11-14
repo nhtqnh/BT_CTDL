@@ -1,6 +1,4 @@
 #pragma once
-#define ROOM_H
-
 #include <string>
 #include "models/Patient.h"
 #include "structures/LinkedQueue.h"
