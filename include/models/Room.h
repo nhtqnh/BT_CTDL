@@ -42,5 +42,3 @@ public:
     LinkedQueue& getRegularQueue();
     BinaryMinHeap& getPriorityHeap();
 };
-
-#endif

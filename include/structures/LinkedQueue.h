@@ -1,6 +1,5 @@
 #pragma once
 #define LINKED_QUEUE_H
-
 #include <string>
 #include "models/Patient.h"
 
@@ -61,5 +60,3 @@ private:
     // Sao chép toàn bộ node từ một hàng đợi khác (sao chép sâu).
     void copyFrom(const LinkedQueue& other);
 };
-
-#endif // LINKED_QUEUE_H

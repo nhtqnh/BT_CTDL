@@ -66,5 +66,3 @@ private:
     // Hoán đổi hai bệnh nhân trong mảng heap.
     void swapPatients(int firstIndex, int secondIndex);
 };
-
-#endif // BINARY_MIN_HEAP_H

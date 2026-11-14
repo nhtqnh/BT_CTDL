@@ -36,5 +36,3 @@ struct Patient {
 
     bool isHigherPriorityThan(const Patient& other) const;
 };
-
-#endif
