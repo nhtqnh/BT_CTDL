@@ -76,169 +76,169 @@ CMakeFiles/BT_CTDL.dir/main.cpp.o: CMakeFiles/BT_CTDL.dir/flags.make
 CMakeFiles/BT_CTDL.dir/main.cpp.o: /Users/nhtqnh/Documents/BT_CTDL/main.cpp
 CMakeFiles/BT_CTDL.dir/main.cpp.o: CMakeFiles/BT_CTDL.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/nhtqnh/Documents/BT_CTDL/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/BT_CTDL.dir/main.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/BT_CTDL.dir/main.cpp.o -MF CMakeFiles/BT_CTDL.dir/main.cpp.o.d -o CMakeFiles/BT_CTDL.dir/main.cpp.o -c /Users/nhtqnh/Documents/BT_CTDL/main.cpp
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/BT_CTDL.dir/main.cpp.o -MF CMakeFiles/BT_CTDL.dir/main.cpp.o.d -o CMakeFiles/BT_CTDL.dir/main.cpp.o -c /Users/nhtqnh/Documents/BT_CTDL/main.cpp
 
 CMakeFiles/BT_CTDL.dir/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/BT_CTDL.dir/main.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/nhtqnh/Documents/BT_CTDL/main.cpp > CMakeFiles/BT_CTDL.dir/main.cpp.i
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/nhtqnh/Documents/BT_CTDL/main.cpp > CMakeFiles/BT_CTDL.dir/main.cpp.i
 
 CMakeFiles/BT_CTDL.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/BT_CTDL.dir/main.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/nhtqnh/Documents/BT_CTDL/main.cpp -o CMakeFiles/BT_CTDL.dir/main.cpp.s
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/nhtqnh/Documents/BT_CTDL/main.cpp -o CMakeFiles/BT_CTDL.dir/main.cpp.s
 
 CMakeFiles/BT_CTDL.dir/src/models/Patient.cpp.o: CMakeFiles/BT_CTDL.dir/flags.make
 CMakeFiles/BT_CTDL.dir/src/models/Patient.cpp.o: /Users/nhtqnh/Documents/BT_CTDL/src/models/Patient.cpp
 CMakeFiles/BT_CTDL.dir/src/models/Patient.cpp.o: CMakeFiles/BT_CTDL.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/nhtqnh/Documents/BT_CTDL/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/BT_CTDL.dir/src/models/Patient.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/BT_CTDL.dir/src/models/Patient.cpp.o -MF CMakeFiles/BT_CTDL.dir/src/models/Patient.cpp.o.d -o CMakeFiles/BT_CTDL.dir/src/models/Patient.cpp.o -c /Users/nhtqnh/Documents/BT_CTDL/src/models/Patient.cpp
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/BT_CTDL.dir/src/models/Patient.cpp.o -MF CMakeFiles/BT_CTDL.dir/src/models/Patient.cpp.o.d -o CMakeFiles/BT_CTDL.dir/src/models/Patient.cpp.o -c /Users/nhtqnh/Documents/BT_CTDL/src/models/Patient.cpp
 
 CMakeFiles/BT_CTDL.dir/src/models/Patient.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/BT_CTDL.dir/src/models/Patient.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/nhtqnh/Documents/BT_CTDL/src/models/Patient.cpp > CMakeFiles/BT_CTDL.dir/src/models/Patient.cpp.i
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/nhtqnh/Documents/BT_CTDL/src/models/Patient.cpp > CMakeFiles/BT_CTDL.dir/src/models/Patient.cpp.i
 
 CMakeFiles/BT_CTDL.dir/src/models/Patient.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/BT_CTDL.dir/src/models/Patient.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/nhtqnh/Documents/BT_CTDL/src/models/Patient.cpp -o CMakeFiles/BT_CTDL.dir/src/models/Patient.cpp.s
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/nhtqnh/Documents/BT_CTDL/src/models/Patient.cpp -o CMakeFiles/BT_CTDL.dir/src/models/Patient.cpp.s
 
 CMakeFiles/BT_CTDL.dir/src/models/Room.cpp.o: CMakeFiles/BT_CTDL.dir/flags.make
 CMakeFiles/BT_CTDL.dir/src/models/Room.cpp.o: /Users/nhtqnh/Documents/BT_CTDL/src/models/Room.cpp
 CMakeFiles/BT_CTDL.dir/src/models/Room.cpp.o: CMakeFiles/BT_CTDL.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/nhtqnh/Documents/BT_CTDL/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/BT_CTDL.dir/src/models/Room.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/BT_CTDL.dir/src/models/Room.cpp.o -MF CMakeFiles/BT_CTDL.dir/src/models/Room.cpp.o.d -o CMakeFiles/BT_CTDL.dir/src/models/Room.cpp.o -c /Users/nhtqnh/Documents/BT_CTDL/src/models/Room.cpp
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/BT_CTDL.dir/src/models/Room.cpp.o -MF CMakeFiles/BT_CTDL.dir/src/models/Room.cpp.o.d -o CMakeFiles/BT_CTDL.dir/src/models/Room.cpp.o -c /Users/nhtqnh/Documents/BT_CTDL/src/models/Room.cpp
 
 CMakeFiles/BT_CTDL.dir/src/models/Room.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/BT_CTDL.dir/src/models/Room.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/nhtqnh/Documents/BT_CTDL/src/models/Room.cpp > CMakeFiles/BT_CTDL.dir/src/models/Room.cpp.i
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/nhtqnh/Documents/BT_CTDL/src/models/Room.cpp > CMakeFiles/BT_CTDL.dir/src/models/Room.cpp.i
 
 CMakeFiles/BT_CTDL.dir/src/models/Room.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/BT_CTDL.dir/src/models/Room.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/nhtqnh/Documents/BT_CTDL/src/models/Room.cpp -o CMakeFiles/BT_CTDL.dir/src/models/Room.cpp.s
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/nhtqnh/Documents/BT_CTDL/src/models/Room.cpp -o CMakeFiles/BT_CTDL.dir/src/models/Room.cpp.s
 
 CMakeFiles/BT_CTDL.dir/src/structures/LinkedQueue.cpp.o: CMakeFiles/BT_CTDL.dir/flags.make
 CMakeFiles/BT_CTDL.dir/src/structures/LinkedQueue.cpp.o: /Users/nhtqnh/Documents/BT_CTDL/src/structures/LinkedQueue.cpp
 CMakeFiles/BT_CTDL.dir/src/structures/LinkedQueue.cpp.o: CMakeFiles/BT_CTDL.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/nhtqnh/Documents/BT_CTDL/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/BT_CTDL.dir/src/structures/LinkedQueue.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/BT_CTDL.dir/src/structures/LinkedQueue.cpp.o -MF CMakeFiles/BT_CTDL.dir/src/structures/LinkedQueue.cpp.o.d -o CMakeFiles/BT_CTDL.dir/src/structures/LinkedQueue.cpp.o -c /Users/nhtqnh/Documents/BT_CTDL/src/structures/LinkedQueue.cpp
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/BT_CTDL.dir/src/structures/LinkedQueue.cpp.o -MF CMakeFiles/BT_CTDL.dir/src/structures/LinkedQueue.cpp.o.d -o CMakeFiles/BT_CTDL.dir/src/structures/LinkedQueue.cpp.o -c /Users/nhtqnh/Documents/BT_CTDL/src/structures/LinkedQueue.cpp
 
 CMakeFiles/BT_CTDL.dir/src/structures/LinkedQueue.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/BT_CTDL.dir/src/structures/LinkedQueue.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/nhtqnh/Documents/BT_CTDL/src/structures/LinkedQueue.cpp > CMakeFiles/BT_CTDL.dir/src/structures/LinkedQueue.cpp.i
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/nhtqnh/Documents/BT_CTDL/src/structures/LinkedQueue.cpp > CMakeFiles/BT_CTDL.dir/src/structures/LinkedQueue.cpp.i
 
 CMakeFiles/BT_CTDL.dir/src/structures/LinkedQueue.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/BT_CTDL.dir/src/structures/LinkedQueue.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/nhtqnh/Documents/BT_CTDL/src/structures/LinkedQueue.cpp -o CMakeFiles/BT_CTDL.dir/src/structures/LinkedQueue.cpp.s
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/nhtqnh/Documents/BT_CTDL/src/structures/LinkedQueue.cpp -o CMakeFiles/BT_CTDL.dir/src/structures/LinkedQueue.cpp.s
 
 CMakeFiles/BT_CTDL.dir/src/structures/BinaryMinHeap.cpp.o: CMakeFiles/BT_CTDL.dir/flags.make
 CMakeFiles/BT_CTDL.dir/src/structures/BinaryMinHeap.cpp.o: /Users/nhtqnh/Documents/BT_CTDL/src/structures/BinaryMinHeap.cpp
 CMakeFiles/BT_CTDL.dir/src/structures/BinaryMinHeap.cpp.o: CMakeFiles/BT_CTDL.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/nhtqnh/Documents/BT_CTDL/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/BT_CTDL.dir/src/structures/BinaryMinHeap.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/BT_CTDL.dir/src/structures/BinaryMinHeap.cpp.o -MF CMakeFiles/BT_CTDL.dir/src/structures/BinaryMinHeap.cpp.o.d -o CMakeFiles/BT_CTDL.dir/src/structures/BinaryMinHeap.cpp.o -c /Users/nhtqnh/Documents/BT_CTDL/src/structures/BinaryMinHeap.cpp
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/BT_CTDL.dir/src/structures/BinaryMinHeap.cpp.o -MF CMakeFiles/BT_CTDL.dir/src/structures/BinaryMinHeap.cpp.o.d -o CMakeFiles/BT_CTDL.dir/src/structures/BinaryMinHeap.cpp.o -c /Users/nhtqnh/Documents/BT_CTDL/src/structures/BinaryMinHeap.cpp
 
 CMakeFiles/BT_CTDL.dir/src/structures/BinaryMinHeap.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/BT_CTDL.dir/src/structures/BinaryMinHeap.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/nhtqnh/Documents/BT_CTDL/src/structures/BinaryMinHeap.cpp > CMakeFiles/BT_CTDL.dir/src/structures/BinaryMinHeap.cpp.i
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/nhtqnh/Documents/BT_CTDL/src/structures/BinaryMinHeap.cpp > CMakeFiles/BT_CTDL.dir/src/structures/BinaryMinHeap.cpp.i
 
 CMakeFiles/BT_CTDL.dir/src/structures/BinaryMinHeap.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/BT_CTDL.dir/src/structures/BinaryMinHeap.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/nhtqnh/Documents/BT_CTDL/src/structures/BinaryMinHeap.cpp -o CMakeFiles/BT_CTDL.dir/src/structures/BinaryMinHeap.cpp.s
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/nhtqnh/Documents/BT_CTDL/src/structures/BinaryMinHeap.cpp -o CMakeFiles/BT_CTDL.dir/src/structures/BinaryMinHeap.cpp.s
 
 CMakeFiles/BT_CTDL.dir/src/algorithms/SortUtils.cpp.o: CMakeFiles/BT_CTDL.dir/flags.make
 CMakeFiles/BT_CTDL.dir/src/algorithms/SortUtils.cpp.o: /Users/nhtqnh/Documents/BT_CTDL/src/algorithms/SortUtils.cpp
 CMakeFiles/BT_CTDL.dir/src/algorithms/SortUtils.cpp.o: CMakeFiles/BT_CTDL.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/nhtqnh/Documents/BT_CTDL/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/BT_CTDL.dir/src/algorithms/SortUtils.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/BT_CTDL.dir/src/algorithms/SortUtils.cpp.o -MF CMakeFiles/BT_CTDL.dir/src/algorithms/SortUtils.cpp.o.d -o CMakeFiles/BT_CTDL.dir/src/algorithms/SortUtils.cpp.o -c /Users/nhtqnh/Documents/BT_CTDL/src/algorithms/SortUtils.cpp
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/BT_CTDL.dir/src/algorithms/SortUtils.cpp.o -MF CMakeFiles/BT_CTDL.dir/src/algorithms/SortUtils.cpp.o.d -o CMakeFiles/BT_CTDL.dir/src/algorithms/SortUtils.cpp.o -c /Users/nhtqnh/Documents/BT_CTDL/src/algorithms/SortUtils.cpp
 
 CMakeFiles/BT_CTDL.dir/src/algorithms/SortUtils.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/BT_CTDL.dir/src/algorithms/SortUtils.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/nhtqnh/Documents/BT_CTDL/src/algorithms/SortUtils.cpp > CMakeFiles/BT_CTDL.dir/src/algorithms/SortUtils.cpp.i
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/nhtqnh/Documents/BT_CTDL/src/algorithms/SortUtils.cpp > CMakeFiles/BT_CTDL.dir/src/algorithms/SortUtils.cpp.i
 
 CMakeFiles/BT_CTDL.dir/src/algorithms/SortUtils.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/BT_CTDL.dir/src/algorithms/SortUtils.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/nhtqnh/Documents/BT_CTDL/src/algorithms/SortUtils.cpp -o CMakeFiles/BT_CTDL.dir/src/algorithms/SortUtils.cpp.s
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/nhtqnh/Documents/BT_CTDL/src/algorithms/SortUtils.cpp -o CMakeFiles/BT_CTDL.dir/src/algorithms/SortUtils.cpp.s
 
 CMakeFiles/BT_CTDL.dir/src/services/Hospital.cpp.o: CMakeFiles/BT_CTDL.dir/flags.make
 CMakeFiles/BT_CTDL.dir/src/services/Hospital.cpp.o: /Users/nhtqnh/Documents/BT_CTDL/src/services/Hospital.cpp
 CMakeFiles/BT_CTDL.dir/src/services/Hospital.cpp.o: CMakeFiles/BT_CTDL.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/nhtqnh/Documents/BT_CTDL/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/BT_CTDL.dir/src/services/Hospital.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/BT_CTDL.dir/src/services/Hospital.cpp.o -MF CMakeFiles/BT_CTDL.dir/src/services/Hospital.cpp.o.d -o CMakeFiles/BT_CTDL.dir/src/services/Hospital.cpp.o -c /Users/nhtqnh/Documents/BT_CTDL/src/services/Hospital.cpp
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/BT_CTDL.dir/src/services/Hospital.cpp.o -MF CMakeFiles/BT_CTDL.dir/src/services/Hospital.cpp.o.d -o CMakeFiles/BT_CTDL.dir/src/services/Hospital.cpp.o -c /Users/nhtqnh/Documents/BT_CTDL/src/services/Hospital.cpp
 
 CMakeFiles/BT_CTDL.dir/src/services/Hospital.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/BT_CTDL.dir/src/services/Hospital.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/nhtqnh/Documents/BT_CTDL/src/services/Hospital.cpp > CMakeFiles/BT_CTDL.dir/src/services/Hospital.cpp.i
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/nhtqnh/Documents/BT_CTDL/src/services/Hospital.cpp > CMakeFiles/BT_CTDL.dir/src/services/Hospital.cpp.i
 
 CMakeFiles/BT_CTDL.dir/src/services/Hospital.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/BT_CTDL.dir/src/services/Hospital.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/nhtqnh/Documents/BT_CTDL/src/services/Hospital.cpp -o CMakeFiles/BT_CTDL.dir/src/services/Hospital.cpp.s
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/nhtqnh/Documents/BT_CTDL/src/services/Hospital.cpp -o CMakeFiles/BT_CTDL.dir/src/services/Hospital.cpp.s
 
 CMakeFiles/BT_CTDL.dir/src/services/SimulationEngine.cpp.o: CMakeFiles/BT_CTDL.dir/flags.make
 CMakeFiles/BT_CTDL.dir/src/services/SimulationEngine.cpp.o: /Users/nhtqnh/Documents/BT_CTDL/src/services/SimulationEngine.cpp
 CMakeFiles/BT_CTDL.dir/src/services/SimulationEngine.cpp.o: CMakeFiles/BT_CTDL.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/nhtqnh/Documents/BT_CTDL/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/BT_CTDL.dir/src/services/SimulationEngine.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/BT_CTDL.dir/src/services/SimulationEngine.cpp.o -MF CMakeFiles/BT_CTDL.dir/src/services/SimulationEngine.cpp.o.d -o CMakeFiles/BT_CTDL.dir/src/services/SimulationEngine.cpp.o -c /Users/nhtqnh/Documents/BT_CTDL/src/services/SimulationEngine.cpp
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/BT_CTDL.dir/src/services/SimulationEngine.cpp.o -MF CMakeFiles/BT_CTDL.dir/src/services/SimulationEngine.cpp.o.d -o CMakeFiles/BT_CTDL.dir/src/services/SimulationEngine.cpp.o -c /Users/nhtqnh/Documents/BT_CTDL/src/services/SimulationEngine.cpp
 
 CMakeFiles/BT_CTDL.dir/src/services/SimulationEngine.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/BT_CTDL.dir/src/services/SimulationEngine.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/nhtqnh/Documents/BT_CTDL/src/services/SimulationEngine.cpp > CMakeFiles/BT_CTDL.dir/src/services/SimulationEngine.cpp.i
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/nhtqnh/Documents/BT_CTDL/src/services/SimulationEngine.cpp > CMakeFiles/BT_CTDL.dir/src/services/SimulationEngine.cpp.i
 
 CMakeFiles/BT_CTDL.dir/src/services/SimulationEngine.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/BT_CTDL.dir/src/services/SimulationEngine.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/nhtqnh/Documents/BT_CTDL/src/services/SimulationEngine.cpp -o CMakeFiles/BT_CTDL.dir/src/services/SimulationEngine.cpp.s
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/nhtqnh/Documents/BT_CTDL/src/services/SimulationEngine.cpp -o CMakeFiles/BT_CTDL.dir/src/services/SimulationEngine.cpp.s
 
 CMakeFiles/BT_CTDL.dir/src/services/StatisticsService.cpp.o: CMakeFiles/BT_CTDL.dir/flags.make
 CMakeFiles/BT_CTDL.dir/src/services/StatisticsService.cpp.o: /Users/nhtqnh/Documents/BT_CTDL/src/services/StatisticsService.cpp
 CMakeFiles/BT_CTDL.dir/src/services/StatisticsService.cpp.o: CMakeFiles/BT_CTDL.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/nhtqnh/Documents/BT_CTDL/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/BT_CTDL.dir/src/services/StatisticsService.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/BT_CTDL.dir/src/services/StatisticsService.cpp.o -MF CMakeFiles/BT_CTDL.dir/src/services/StatisticsService.cpp.o.d -o CMakeFiles/BT_CTDL.dir/src/services/StatisticsService.cpp.o -c /Users/nhtqnh/Documents/BT_CTDL/src/services/StatisticsService.cpp
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/BT_CTDL.dir/src/services/StatisticsService.cpp.o -MF CMakeFiles/BT_CTDL.dir/src/services/StatisticsService.cpp.o.d -o CMakeFiles/BT_CTDL.dir/src/services/StatisticsService.cpp.o -c /Users/nhtqnh/Documents/BT_CTDL/src/services/StatisticsService.cpp
 
 CMakeFiles/BT_CTDL.dir/src/services/StatisticsService.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/BT_CTDL.dir/src/services/StatisticsService.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/nhtqnh/Documents/BT_CTDL/src/services/StatisticsService.cpp > CMakeFiles/BT_CTDL.dir/src/services/StatisticsService.cpp.i
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/nhtqnh/Documents/BT_CTDL/src/services/StatisticsService.cpp > CMakeFiles/BT_CTDL.dir/src/services/StatisticsService.cpp.i
 
 CMakeFiles/BT_CTDL.dir/src/services/StatisticsService.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/BT_CTDL.dir/src/services/StatisticsService.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/nhtqnh/Documents/BT_CTDL/src/services/StatisticsService.cpp -o CMakeFiles/BT_CTDL.dir/src/services/StatisticsService.cpp.s
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/nhtqnh/Documents/BT_CTDL/src/services/StatisticsService.cpp -o CMakeFiles/BT_CTDL.dir/src/services/StatisticsService.cpp.s
 
 CMakeFiles/BT_CTDL.dir/src/services/ScenarioRunner.cpp.o: CMakeFiles/BT_CTDL.dir/flags.make
 CMakeFiles/BT_CTDL.dir/src/services/ScenarioRunner.cpp.o: /Users/nhtqnh/Documents/BT_CTDL/src/services/ScenarioRunner.cpp
 CMakeFiles/BT_CTDL.dir/src/services/ScenarioRunner.cpp.o: CMakeFiles/BT_CTDL.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/nhtqnh/Documents/BT_CTDL/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/BT_CTDL.dir/src/services/ScenarioRunner.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/BT_CTDL.dir/src/services/ScenarioRunner.cpp.o -MF CMakeFiles/BT_CTDL.dir/src/services/ScenarioRunner.cpp.o.d -o CMakeFiles/BT_CTDL.dir/src/services/ScenarioRunner.cpp.o -c /Users/nhtqnh/Documents/BT_CTDL/src/services/ScenarioRunner.cpp
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/BT_CTDL.dir/src/services/ScenarioRunner.cpp.o -MF CMakeFiles/BT_CTDL.dir/src/services/ScenarioRunner.cpp.o.d -o CMakeFiles/BT_CTDL.dir/src/services/ScenarioRunner.cpp.o -c /Users/nhtqnh/Documents/BT_CTDL/src/services/ScenarioRunner.cpp
 
 CMakeFiles/BT_CTDL.dir/src/services/ScenarioRunner.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/BT_CTDL.dir/src/services/ScenarioRunner.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/nhtqnh/Documents/BT_CTDL/src/services/ScenarioRunner.cpp > CMakeFiles/BT_CTDL.dir/src/services/ScenarioRunner.cpp.i
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/nhtqnh/Documents/BT_CTDL/src/services/ScenarioRunner.cpp > CMakeFiles/BT_CTDL.dir/src/services/ScenarioRunner.cpp.i
 
 CMakeFiles/BT_CTDL.dir/src/services/ScenarioRunner.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/BT_CTDL.dir/src/services/ScenarioRunner.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/nhtqnh/Documents/BT_CTDL/src/services/ScenarioRunner.cpp -o CMakeFiles/BT_CTDL.dir/src/services/ScenarioRunner.cpp.s
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/nhtqnh/Documents/BT_CTDL/src/services/ScenarioRunner.cpp -o CMakeFiles/BT_CTDL.dir/src/services/ScenarioRunner.cpp.s
 
 CMakeFiles/BT_CTDL.dir/src/services/FileManager.cpp.o: CMakeFiles/BT_CTDL.dir/flags.make
 CMakeFiles/BT_CTDL.dir/src/services/FileManager.cpp.o: /Users/nhtqnh/Documents/BT_CTDL/src/services/FileManager.cpp
 CMakeFiles/BT_CTDL.dir/src/services/FileManager.cpp.o: CMakeFiles/BT_CTDL.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/nhtqnh/Documents/BT_CTDL/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/BT_CTDL.dir/src/services/FileManager.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/BT_CTDL.dir/src/services/FileManager.cpp.o -MF CMakeFiles/BT_CTDL.dir/src/services/FileManager.cpp.o.d -o CMakeFiles/BT_CTDL.dir/src/services/FileManager.cpp.o -c /Users/nhtqnh/Documents/BT_CTDL/src/services/FileManager.cpp
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/BT_CTDL.dir/src/services/FileManager.cpp.o -MF CMakeFiles/BT_CTDL.dir/src/services/FileManager.cpp.o.d -o CMakeFiles/BT_CTDL.dir/src/services/FileManager.cpp.o -c /Users/nhtqnh/Documents/BT_CTDL/src/services/FileManager.cpp
 
 CMakeFiles/BT_CTDL.dir/src/services/FileManager.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/BT_CTDL.dir/src/services/FileManager.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/nhtqnh/Documents/BT_CTDL/src/services/FileManager.cpp > CMakeFiles/BT_CTDL.dir/src/services/FileManager.cpp.i
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/nhtqnh/Documents/BT_CTDL/src/services/FileManager.cpp > CMakeFiles/BT_CTDL.dir/src/services/FileManager.cpp.i
 
 CMakeFiles/BT_CTDL.dir/src/services/FileManager.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/BT_CTDL.dir/src/services/FileManager.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/nhtqnh/Documents/BT_CTDL/src/services/FileManager.cpp -o CMakeFiles/BT_CTDL.dir/src/services/FileManager.cpp.s
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/nhtqnh/Documents/BT_CTDL/src/services/FileManager.cpp -o CMakeFiles/BT_CTDL.dir/src/services/FileManager.cpp.s
 
 CMakeFiles/BT_CTDL.dir/src/ui/Menu.cpp.o: CMakeFiles/BT_CTDL.dir/flags.make
 CMakeFiles/BT_CTDL.dir/src/ui/Menu.cpp.o: /Users/nhtqnh/Documents/BT_CTDL/src/ui/Menu.cpp
 CMakeFiles/BT_CTDL.dir/src/ui/Menu.cpp.o: CMakeFiles/BT_CTDL.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/nhtqnh/Documents/BT_CTDL/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/BT_CTDL.dir/src/ui/Menu.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/BT_CTDL.dir/src/ui/Menu.cpp.o -MF CMakeFiles/BT_CTDL.dir/src/ui/Menu.cpp.o.d -o CMakeFiles/BT_CTDL.dir/src/ui/Menu.cpp.o -c /Users/nhtqnh/Documents/BT_CTDL/src/ui/Menu.cpp
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/BT_CTDL.dir/src/ui/Menu.cpp.o -MF CMakeFiles/BT_CTDL.dir/src/ui/Menu.cpp.o.d -o CMakeFiles/BT_CTDL.dir/src/ui/Menu.cpp.o -c /Users/nhtqnh/Documents/BT_CTDL/src/ui/Menu.cpp
 
 CMakeFiles/BT_CTDL.dir/src/ui/Menu.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/BT_CTDL.dir/src/ui/Menu.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/nhtqnh/Documents/BT_CTDL/src/ui/Menu.cpp > CMakeFiles/BT_CTDL.dir/src/ui/Menu.cpp.i
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/nhtqnh/Documents/BT_CTDL/src/ui/Menu.cpp > CMakeFiles/BT_CTDL.dir/src/ui/Menu.cpp.i
 
 CMakeFiles/BT_CTDL.dir/src/ui/Menu.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/BT_CTDL.dir/src/ui/Menu.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/nhtqnh/Documents/BT_CTDL/src/ui/Menu.cpp -o CMakeFiles/BT_CTDL.dir/src/ui/Menu.cpp.s
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/nhtqnh/Documents/BT_CTDL/src/ui/Menu.cpp -o CMakeFiles/BT_CTDL.dir/src/ui/Menu.cpp.s
 
 # Object files for target BT_CTDL
 BT_CTDL_OBJECTS = \

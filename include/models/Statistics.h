@@ -1,4 +1,4 @@
-#ifndef STATISTICS_H
+#pragma once
 #define STATISTICS_H
 
 struct PriorityStats {
@@ -37,5 +37,3 @@ struct SimulationStatistics {
         overallMaxQueueLength = 0;
     }
 };
-
-#endif

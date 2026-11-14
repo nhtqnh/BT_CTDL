@@ -1,7 +1,11 @@
 #pragma once
 #include <iosfwd>
-// StatisticsService: Thống kê theo mức ưu tiên (1..kMaxPriority, 1 = khẩn cấp nhất).
+
 class StatisticsService {
+public:
+    // Đưa kMaxPriority lên trên cùng để các mảng bên dưới nhận diện được
+    static const int kMaxPriority = 5;
+
 private:
     int  arrived_[kMaxPriority + 1];
     int  served_[kMaxPriority + 1];
@@ -10,26 +14,29 @@ private:
     int  maxWait_[kMaxPriority + 1];
 
     static bool validPriority(int p);
+
 public:
-    static const int kMaxPriority = 5;
     StatisticsService();
-    //Ghi nhận sự kiện
-    bool recordArrival(int priority);                // bệnh nhân đến/được tiếp nhận
-    bool recordServed(int priority, int waitMinutes);// bệnh nhân được gọi khám
-    bool recordRejected(int priority);               // không xếp được phòng
+    // Ghi nhận sự kiện
+    bool recordArrival(int priority);
+    bool recordServed(int priority, int waitMinutes);
+    bool recordRejected(int priority);
     void reset();
-    //Truy vấn theo mức ưu tiên
+    
+    // Truy vấn theo mức ưu tiên
     int    getArrived(int priority) const;
     int    getServed(int priority) const;
     int    getRejected(int priority) const;
     int    getMaxWait(int priority) const;
     double getAverageWait(int priority) const;    
-    //Truy vấn toàn bộ
+    
+    // Truy vấn toàn bộ
     int    getTotalArrived() const;
     int    getTotalServed() const;
     int    getTotalRejected() const;
     int    getOverallMaxWait() const;
     double getOverallAverageWait() const;
+    
     // In bảng thống kê
     void print(std::ostream& os) const;
 };

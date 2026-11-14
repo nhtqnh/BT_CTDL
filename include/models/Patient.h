@@ -1,4 +1,4 @@
-#ifndef PATIENT_H
+#pragma once
 #define PATIENT_H
 #include <string>
 enum class PriorityLevel {
