@@ -1,7 +1,9 @@
 #pragma once
+
 #include <string>
-#include "models/Patient.h"
-#include "models/Room.h"    
+#include "Patient.h"   
+#include "Room.h"     
+
 // ============================================
 // MODULE: Hospital Management (Business Logic)
 //---------------------------------------------
@@ -22,17 +24,21 @@ public:
     Hospital(const Hospital&) = delete;
     Hospital& operator=(const Hospital&) = delete;
 
-    // [Room Management] Thêm & Tra cứu phòng
+    // [Room Management] Thêm, tạo & Tra cứu phòng
     bool  addRoom(Room* room);
+    int   createRooms(int numberOfRooms, const std::string specialties[], int specialtyCount);
     int   getRoomCount() const;
     Room* getRoom(int index) const;
-    Room* findRoomById(int roomId) const;
+    Room** getRooms() const;
+    Room* findRoomById(const std::string& roomId) const;
     int   findRoomsBySpecialty(const std::string& specialty, Room** out, int maxOut) const;
 
     // [Business Logic] Thuật toán chọn phòng & Tiếp nhận bệnh nhân
+    int   getRoomLoad(Room* room) const;
+    Room* selectBestRoom(const std::string& specialty, int avgServiceDuration) const;
     Room* chooseRoom(const Patient& patient) const;
-    Room* admitPatient(const Patient& patient);
+    Room* admitPatient(const Patient& patient, bool usePriority);
 
     // [Statistics] Thống kê tải bệnh nhân
-    int totalWaiting() const;
+    int totalLoad() const;
 };
