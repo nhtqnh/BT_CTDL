@@ -1,9 +1,37 @@
 #include "services/StatisticsService.h"
-
 #include <iomanip>
 #include <ostream>
 
-StatisticsService::StatisticsService() {
+namespace {
+    int utf8VisualWidth(const std::string& str) {
+        int count = 0;
+        for (size_t i = 0; i < str.size(); ++i) {
+            if ((static_cast<unsigned char>(str[i]) & 0xC0) != 0x80) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    void printUtf8Left(std::ostream& os, const std::string& str, int targetWidth) {
+        int vWidth = utf8VisualWidth(str);
+        os << str;
+        if (targetWidth > vWidth) {
+            os << std::string(targetWidth - vWidth, ' ');
+        }
+    }
+
+    void printUtf8Right(std::ostream& os, const std::string& str, int targetWidth) {
+        int vWidth = utf8VisualWidth(str);
+        if (targetWidth > vWidth) {
+            os << std::string(targetWidth - vWidth, ' ');
+        }
+        os << str;
+    }
+}
+
+StatisticsService::StatisticsService()
+    : maxQueueLength_(0) {
     reset();
 }
 
@@ -21,6 +49,16 @@ const char* StatisticsService::priorityName(int priority) {
     }
 }
 
+const char* StatisticsService::priorityNameVi(int priority) {
+    switch (priority) {
+    case 1: return "Cấp cứu (Nhóm 1)";
+    case 2: return "Người cao tuổi (Nhóm 2)";
+    case 3: return "Trẻ em (Nhóm 3)";
+    case 4: return "Thông thường (Nhóm 4)";
+    default: return "Không xác định";
+    }
+}
+
 void StatisticsService::reset() {
     for (int i = 0; i <= kPriorityCount; ++i) {
         arrived_[i] = 0;
@@ -30,6 +68,7 @@ void StatisticsService::reset() {
         totalWait_[i] = 0;
         maxWait_[i] = 0;
     }
+    maxQueueLength_ = 0;
 }
 
 // Ghi nhận sự kiện
@@ -59,6 +98,12 @@ bool StatisticsService::recordRejected(int priority) {
     if (!validPriority(priority)) return false;
     ++rejected_[priority];
     return true;
+}
+
+void StatisticsService::updateMaxQueueLength(int length) {
+    if (length > maxQueueLength_) {
+        maxQueueLength_ = length;
+    }
 }
 
 //Theo mức ưu tiên
@@ -132,33 +177,61 @@ double StatisticsService::getOverallAverageWait() const {
     return served == 0 ? 0.0 : static_cast<double>(total) / served;
 }
 
-//In bảng
+int StatisticsService::getMaxQueueLength() const {
+    return maxQueueLength_;
+}
 
+// In báo cáo thống kê
 void StatisticsService::print(std::ostream& os) const {
-    os << std::left
-        << std::setw(12) << "Uu tien"
-        << std::setw(11) << "Tiep nhan"
-        << std::setw(10) << "Da kham"
-        << std::setw(8) << "Bo ve"
-        << std::setw(10) << "Tu choi"
-        << std::setw(14) << "Cho TB (ph)"
-        << std::setw(14) << "Cho max (ph)" << "\n";
+    int totalArrived = getTotalArrived();
+    int totalServed = getTotalServed();
+    int totalLeft = getTotalLeft();
+    int totalRejected = getTotalRejected();
+    double servedRate = totalArrived > 0 ? (totalServed * 100.0 / totalArrived) : 0.0;
+    double leftRate = totalArrived > 0 ? (totalLeft * 100.0 / totalArrived) : 0.0;
+    double rejectedRate = totalArrived > 0 ? (totalRejected * 100.0 / totalArrived) : 0.0;
+
+    os << "\n"
+       << "────────────────────────────────────────────────────────────────────────────────────────\n"
+       << "                      BÁO CÁO THỐNG KÊ HOẠT ĐỘNG KHÁM CHỮA BỆNH\n"
+       << "────────────────────────────────────────────────────────────────────────────────────────\n\n"
+       << " 1. TỔNG QUAN LƯU LƯỢNG VÀ KẾT QUẢ PHỤC VỤ\n"
+       << "    • Tổng bệnh nhân tiếp nhận  : " << std::setw(4) << totalArrived << " ca\n"
+       << "    • Đã phục vụ hoàn tất       : " << std::setw(4) << totalServed << " ca (" 
+       << std::fixed << std::setprecision(1) << servedRate << "% tổng tiếp nhận)\n"
+       << "    • Bệnh nhân bỏ về giữa chừng: " << std::setw(4) << totalLeft << " ca (" 
+       << leftRate << "% do chờ quá ngưỡng T)\n"
+       << "    • Từ chối tiếp nhận         : " << std::setw(4) << totalRejected << " ca (" 
+       << rejectedRate << "% do không có phòng)\n"
+       << "    • Độ dài hàng đợi lớn nhất  : " << std::setw(4) << maxQueueLength_ << " ca (tại thời điểm cao điểm)\n\n"
+       << " 2. PHÂN TÍCH THỜI GIAN CHỜ THEO NHÓM ĐỘ ƯU TIÊN\n  ";
+    printUtf8Left(os, "Nhóm độ ưu tiên", 28);
+    printUtf8Right(os, "Tiếp nhận", 12);
+    printUtf8Right(os, "Đã khám", 12);
+    printUtf8Right(os, "Bỏ về", 10);
+    printUtf8Right(os, "Chờ TB (phút)", 16);
+    printUtf8Right(os, "Chờ Max (phút)", 16);
+    os << "\n  ────────────────────────────────────────────────────────────────────────────────────────\n";
 
     os << std::fixed << std::setprecision(2);
     for (int p = 1; p <= kPriorityCount; ++p) {
-        os << std::setw(12) << priorityName(p)
-            << std::setw(11) << arrived_[p]
-            << std::setw(10) << served_[p]
-            << std::setw(8) << left_[p]
-            << std::setw(10) << rejected_[p]
-            << std::setw(14) << getAverageWait(p)
-            << std::setw(14) << maxWait_[p] << "\n";
+        os << "  ";
+        printUtf8Left(os, priorityNameVi(p), 28);
+        os << std::right
+           << std::setw(12) << arrived_[p]
+           << std::setw(12) << served_[p]
+           << std::setw(10) << left_[p]
+           << std::setw(16) << getAverageWait(p)
+           << std::setw(16) << maxWait_[p] << "\n";
     }
-    os << std::setw(12) << "Tong"
-        << std::setw(11) << getTotalArrived()
-        << std::setw(10) << getTotalServed()
-        << std::setw(8) << getTotalLeft()
-        << std::setw(10) << getTotalRejected()
-        << std::setw(14) << getOverallAverageWait()
-        << std::setw(14) << getOverallMaxWait() << "\n";
+    os << "  ────────────────────────────────────────────────────────────────────────────────────────\n"
+       << "  ";
+    printUtf8Left(os, "Toàn viện tổng hợp", 28);
+    os << std::right
+       << std::setw(12) << totalArrived
+       << std::setw(12) << totalServed
+       << std::setw(10) << totalLeft
+       << std::setw(16) << getOverallAverageWait()
+       << std::setw(16) << getOverallMaxWait() << "\n"
+       << "────────────────────────────────────────────────────────────────────────────────────────\n";
 }

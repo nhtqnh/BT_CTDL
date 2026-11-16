@@ -1,9 +1,7 @@
 #pragma once
-
 #include <iosfwd>
 #include <string>
 #include <vector>
-
 #include "models/Patient.h"
 #include "models/SimulationConfig.h"
 #include "services/StatisticsService.h"
@@ -29,6 +27,9 @@ public:
 
     // Thêm sẵn 4 kịch bản mẫu so sánh chính sách (FIFO, Ưu tiên, Aging, Mở rộng phòng)
     void addDefaultScenarios(const SimulationConfig& base);
+
+    // So sánh số phòng khám mở cửa
+    void addRoomComparisonScenarios(const SimulationConfig& base, const std::vector<int>& roomCounts);
 
     void clearScenarios();
 

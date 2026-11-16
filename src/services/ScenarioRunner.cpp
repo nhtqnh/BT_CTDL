@@ -4,31 +4,36 @@
 #include <iomanip>
 #include <iostream>
 #include <ostream>
-#include <streambuf>
 
 #include "services/Hospital.h"
 #include "services/SimulationEngine.h"
 
 namespace {
-    // Ẩn log tạm thời để benchmark chính xác và không ngập màn hình
-    class NullBuffer : public std::streambuf {
-    protected:
-        int overflow(int c) override { return c; }
-        std::streamsize xsputn(const char*, std::streamsize n) override { return n; }
-    };
+    int utf8VisualWidth(const std::string& str) {
+        int count = 0;
+        for (size_t i = 0; i < str.size(); ++i) {
+            if ((static_cast<unsigned char>(str[i]) & 0xC0) != 0x80) {
+                count++;
+            }
+        }
+        return count;
+    }
 
-    class CoutSilencer {
-    public:
-        explicit CoutSilencer(bool active) : old_(nullptr) {
-            if (active) old_ = std::cout.rdbuf(&null_);
+    void printUtf8Left(std::ostream& os, const std::string& str, int targetWidth) {
+        int vWidth = utf8VisualWidth(str);
+        os << str;
+        if (targetWidth > vWidth) {
+            os << std::string(targetWidth - vWidth, ' ');
         }
-        ~CoutSilencer() {
-            if (old_ != nullptr) std::cout.rdbuf(old_);
+    }
+
+    void printUtf8Right(std::ostream& os, const std::string& str, int targetWidth) {
+        int vWidth = utf8VisualWidth(str);
+        if (targetWidth > vWidth) {
+            os << std::string(targetWidth - vWidth, ' ');
         }
-    private:
-        NullBuffer null_;
-        std::streambuf* old_;
-    };
+        os << str;
+    }
 }
 
 ScenarioRunner::ScenarioRunner(const std::vector<Patient>& patients)
@@ -63,18 +68,30 @@ void ScenarioRunner::addDefaultScenarios(const SimulationConfig& base) {
 
     cfg.priorityEnabled = false;
     cfg.agingEnabled = false;
-    addScenario("FIFO (khong uu tien)", cfg);
+    addScenario("FIFO (Không ưu tiên)", cfg);
 
     cfg.priorityEnabled = true;
-    addScenario("Uu tien", cfg);
+    addScenario("Có ưu tiên (Min-Heap)", cfg);
 
     cfg.agingEnabled = true;
     if (cfg.agingInterval <= 0) cfg.agingInterval = 10;
     if (cfg.waitThresholdT <= 0) cfg.waitThresholdT = 60;
-    addScenario("Uu tien + aging", cfg);
+    addScenario("Ưu tiên + Tăng hạng Aging", cfg);
 
     cfg.numberOfRooms = base.numberOfRooms * 2;
-    addScenario("Uu tien + aging, x2 phong", cfg);
+    addScenario("Ưu tiên + Aging (Mở x2 phòng)", cfg);
+}
+
+void ScenarioRunner::addRoomComparisonScenarios(const SimulationConfig& base, const std::vector<int>& roomCounts) {
+    for (int count : roomCounts) {
+        if (count <= 0) continue;
+        SimulationConfig cfg = base;
+        cfg.numberOfRooms = count;
+        std::string name = "Mở " + std::to_string(count) + " phòng (" +
+                           (cfg.priorityEnabled ? "Có ưu tiên" : "FIFO") +
+                           (cfg.agingEnabled ? "+Aging" : "") + ")";
+        addScenario(name, cfg);
+    }
 }
 
 void ScenarioRunner::clearScenarios() {
@@ -89,11 +106,11 @@ bool ScenarioRunner::runSingle(ScenarioResult& result) const {
     const SimulationConfig& cfg = result.config;
 
     if (patients_.empty()) {
-        result.error = "Khong co du lieu benh nhan.";
+        result.error = "Không có dữ liệu bệnh nhân để mô phỏng.";
         return false;
     }
     if (cfg.numberOfRooms <= 0) {
-        result.error = "numberOfRooms phai lon hon 0.";
+        result.error = "Số phòng khám (numberOfRooms) phải lớn hơn 0.";
         return false;
     }
 
@@ -102,18 +119,15 @@ bool ScenarioRunner::runSingle(ScenarioResult& result) const {
         specialties_.data(),
         static_cast<int>(specialties_.size()));
     if (created != cfg.numberOfRooms) {
-        result.error = "Khong tao du so phong.";
+        result.error = "Không tạo đủ số phòng khám chuyên khoa.";
         return false;
     }
 
     std::vector<Patient> input = patients_;
-    SimulationEngine engine(&hospital, cfg);
+    SimulationEngine engine(&hospital, cfg, verbose_ ? LogMode::MINUTE_TICK : LogMode::SUMMARY);
 
     auto start = std::chrono::steady_clock::now();
-    {
-        CoutSilencer silence(!verbose_);
-        engine.runSimulation(input.data(), static_cast<int>(input.size()));
-    }
+    engine.runSimulation(input.data(), static_cast<int>(input.size()));
     auto stop = std::chrono::steady_clock::now();
 
     result.elapsedMs =
@@ -141,44 +155,78 @@ int ScenarioRunner::runAll() {
 }
 
 void ScenarioRunner::printComparison(std::ostream& os) const {
-    os << std::left << std::setw(28) << "Kich ban"
-        << std::setw(7) << "Phong"
-        << std::setw(11) << "Tiep nhan"
-        << std::setw(9) << "Da kham"
-        << std::setw(7) << "Bo ve"
-        << std::setw(9) << "Tu choi"
-        << std::setw(9) << "TB chung"
-        << std::setw(9) << "Max"
-        << std::setw(11) << "TB EMERG."
-        << std::setw(11) << "TB ELDERLY"
-        << std::setw(9) << "TB CHILD"
-        << std::setw(10) << "TB NORMAL"
-        << std::setw(11) << "Chay (ms)" << "\n";
+    os << "\n"
+       << "──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────\n"
+       << "                                      BẢNG SO SÁNH HIỆU NĂNG CÁC KỊCH BẢN VẬN HÀNH\n"
+       << "──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────\n";
+
+    printUtf8Left(os, "Kịch bản vận hành", 32);
+    printUtf8Right(os, "Phòng", 8);
+    printUtf8Right(os, "Tiếp nhận", 11);
+    printUtf8Right(os, "Đã khám", 10);
+    printUtf8Right(os, "Bỏ về", 9);
+    printUtf8Right(os, "Chờ TB (ph)", 14);
+    printUtf8Right(os, "Chờ Max (ph)", 14);
+    printUtf8Right(os, "Hàng Max", 11);
+    printUtf8Right(os, "TB Cấp cứu", 14);
+    printUtf8Right(os, "Chạy (ms)", 12);
+    os << "\n──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────\n";
 
     os << std::fixed;
+    int bestAvgWaitIdx = -1;
+    double minAvgWait = 1e9;
+
+    int bestEmergIdx = -1;
+    double minEmergWait = 1e9;
+
     for (size_t i = 0; i < results_.size(); ++i) {
         const ScenarioResult& r = results_[i];
 
         if (!r.ok) {
-            os << std::setw(28) << r.name << "LOI: " << r.error << "\n";
+            printUtf8Left(os, r.name, 32);
+            os << "  LỖI: " << r.error << "\n";
             continue;
         }
 
         const StatisticsService& s = r.stats;
-        os << std::setw(28) << r.name
-            << std::setw(7) << r.config.numberOfRooms
-            << std::setw(11) << s.getTotalArrived()
-            << std::setw(9) << s.getTotalServed()
-            << std::setw(7) << s.getTotalLeft()
-            << std::setw(9) << s.getTotalRejected()
-            << std::setprecision(2)
-            << std::setw(9) << s.getOverallAverageWait()
-            << std::setw(9) << s.getOverallMaxWait()
-            << std::setw(11) << s.getAverageWait(1)
-            << std::setw(11) << s.getAverageWait(2)
-            << std::setw(9) << s.getAverageWait(3)
-            << std::setw(10) << s.getAverageWait(4)
-            << std::setprecision(3)
-            << std::setw(11) << r.elapsedMs << "\n";
+        double overallWait = s.getOverallAverageWait();
+        double emergWait = s.getAverageWait(1);
+
+        if (overallWait < minAvgWait && s.getTotalServed() > 0) {
+            minAvgWait = overallWait;
+            bestAvgWaitIdx = static_cast<int>(i);
+        }
+        if (emergWait < minEmergWait && s.getServed(1) > 0) {
+            minEmergWait = emergWait;
+            bestEmergIdx = static_cast<int>(i);
+        }
+
+        printUtf8Left(os, r.name, 32);
+        os << std::right
+           << std::setw(8)  << r.config.numberOfRooms
+           << std::setw(11) << s.getTotalArrived()
+           << std::setw(10) << s.getTotalServed()
+           << std::setw(9)  << s.getTotalLeft()
+           << std::setprecision(2)
+           << std::setw(14) << overallWait
+           << std::setw(14) << s.getOverallMaxWait()
+           << std::setw(11) << s.getMaxQueueLength()
+           << std::setw(14) << emergWait
+           << std::setprecision(2)
+           << std::setw(12) << r.elapsedMs << "\n";
     }
+    os << "──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────\n";
+
+    // Phân tích và làm nổi bật kịch bản tối ưu
+    if (bestAvgWaitIdx >= 0) {
+        os << " • Kịch bản có thời gian chờ trung bình ngắn nhất : \"" 
+           << results_[bestAvgWaitIdx].name << "\" (" 
+           << std::fixed << std::setprecision(2) << minAvgWait << " phút)\n";
+    }
+    if (bestEmergIdx >= 0) {
+        os << " • Kịch bản xử lý ca cấp cứu ưu tiên nhanh nhất    : \"" 
+           << results_[bestEmergIdx].name << "\" (" 
+           << std::fixed << std::setprecision(2) << minEmergWait << " phút)\n";
+    }
+    os << "──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────\n";
 }

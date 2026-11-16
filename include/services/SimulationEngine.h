@@ -4,23 +4,38 @@
 #include "services/Hospital.h"
 #include "services/StatisticsService.h"
 
+enum class LogMode {
+    SUMMARY = 0,    // Chế độ 1: Tóm tắt (Mặc định) - Không in log từng phút
+    EVENTS = 1,     // Chế độ 2: Chi tiết sự kiện phát sinh (Đến, Khám, Aging, Bỏ về)
+    MINUTE_TICK = 2 // Chế độ 3: Theo dõi từng phút - In trạng thái các phòng mỗi phút
+};
+
 /**
  * @brief Lớp điều phối và vận hành vòng lặp mô phỏng theo từng phút (Minute Tick Engine).
  */
 class SimulationEngine {
 private:
-    Hospital* hospital;               // Con trỏ tới danh sách phòng khám[cite: 4]
-    SimulationConfig config;          // Tham số cấu hình mô phỏng[cite: 4]
-    StatisticsService statsService;   // Service ghi nhận và tổng hợp chỉ số thống kê[cite: 4]
-    int currentMinute;                // Phút mô phỏng hiện tại trong ngày[cite: 4]
+    Hospital* hospital;               // Con trỏ tới danh sách phòng khám
+    SimulationConfig config;          // Tham số cấu hình mô phỏng
+    StatisticsService statsService;   // Service ghi nhận và tổng hợp chỉ số thống kê
+    int currentMinute;                // Phút mô phỏng hiện tại trong ngày
+    Patient* masterEvents = nullptr;  // Con trỏ tới mảng sự kiện gốc để cập nhật trạng thái
+    int masterEventCount = 0;
+    LogMode logMode = LogMode::SUMMARY;
+
+    void updateMasterPatient(const std::string& id, PatientStatus status, int waitMin, int startMin);
 
 public:
     /**
      * @brief Khởi tạo engine mô phỏng với bệnh viện và cấu hình tương ứng.
      * @param h Con trỏ quản lý Hospital
      * @param cfg Cấu hình tham số mô phỏng
+     * @param mode Chế độ hiển thị mô phỏng (mặc định SUMMARY)
      */
-    SimulationEngine(Hospital* h, const SimulationConfig& cfg);
+    SimulationEngine(Hospital* h, const SimulationConfig& cfg, LogMode mode = LogMode::SUMMARY);
+
+    void setLogMode(LogMode mode);
+    LogMode getLogMode() const { return logMode; }
 
     /**
      * @brief Vòng lặp thời gian chính chạy từ t = 0 đến totalSimulationMinutes - 1[cite: 2, 4].

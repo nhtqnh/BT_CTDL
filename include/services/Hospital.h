@@ -1,8 +1,8 @@
 #pragma once
 
 #include <string>
-#include "Patient.h"   
-#include "Room.h"     
+#include "models/Patient.h"   
+#include "models/Room.h"     
 
 // ============================================
 // MODULE: Hospital Management (Business Logic)
@@ -27,6 +27,7 @@ public:
     // [Room Management] Thêm, tạo & Tra cứu phòng
     bool  addRoom(Room* room);
     int   createRooms(int numberOfRooms, const std::string specialties[], int specialtyCount);
+    void  clearRooms();
     int   getRoomCount() const;
     Room* getRoom(int index) const;
     Room** getRooms() const;

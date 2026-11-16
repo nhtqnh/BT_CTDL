@@ -1,0 +1,5 @@
+id|fullName|age|priority|specialty|arrivalMinute|ticketNumber|serviceDuration
+P1|Le Hoang Binh|37|2|Tai mui hong|382|1|10
+P2|Le Thi Lan|60|3|Ngoai khoa|91|2|28
+P3|Dang Van Chi|74|4|Da lieu|138|3|22
+P4|Le Ngoc Long|44|4|Rang ham mat|29|4|29

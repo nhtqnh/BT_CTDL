@@ -39,4 +39,10 @@ public:
 
     LinkedQueue& getRegularQueue();
     BinaryMinHeap& getPriorityHeap();
+
+    int getMaxQueueLength() const;
+    int getTotalServedCount() const;
+    bool isServiceComplete() const;
+    const Patient* getCurrentPatient() const;
+    int getRemainingServiceTime() const;
 };

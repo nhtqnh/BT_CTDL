@@ -12,6 +12,7 @@ private:
     int  rejected_[kPriorityCount + 1];
     long totalWait_[kPriorityCount + 1];
     int  maxWait_[kPriorityCount + 1];
+    int  maxQueueLength_;
 
     static bool validPriority(int p);
 
@@ -20,12 +21,14 @@ public:
 
     // Tiện ích tên mức ưu tiên
     static const char* priorityName(int priority);
+    static const char* priorityNameVi(int priority);
 
     // Ghi nhận sự kiện
     bool recordArrival(int priority);                // Bệnh nhân đến
     bool recordServed(int priority, int waitMinutes);// Bệnh nhân được gọi khám
     bool recordLeft(int priority);                   // Bệnh nhân bỏ về giữa chừng
     bool recordRejected(int priority);               // Không xếp được phòng / từ chối
+    void updateMaxQueueLength(int length);           // Cập nhật độ dài hàng đợi lớn nhất
     void reset();
 
     // Truy vấn theo mức ưu tiên
@@ -43,6 +46,7 @@ public:
     int    getTotalRejected() const;
     int    getOverallMaxWait() const;
     double getOverallAverageWait() const;
+    int    getMaxQueueLength() const;
 
     // In bảng thống kê
     void print(std::ostream& os) const;

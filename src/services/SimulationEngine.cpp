@@ -5,14 +5,32 @@
 #include <iostream>
 #include <iomanip>
 
-SimulationEngine::SimulationEngine(Hospital* h, const SimulationConfig& cfg)
-    : hospital(h), config(cfg), currentMinute(0) {
+SimulationEngine::SimulationEngine(Hospital* h, const SimulationConfig& cfg, LogMode mode)
+    : hospital(h), config(cfg), currentMinute(0), masterEvents(nullptr), masterEventCount(0), logMode(mode) {
     statsService.reset();
+}
+
+void SimulationEngine::setLogMode(LogMode mode) {
+    logMode = mode;
+}
+
+void SimulationEngine::updateMasterPatient(const std::string& id, PatientStatus status, int waitMin, int startMin) {
+    if (masterEvents == nullptr || masterEventCount <= 0) return;
+    for (int i = 0; i < masterEventCount; ++i) {
+        if (masterEvents[i].id == id) {
+            masterEvents[i].status = status;
+            if (waitMin >= 0) masterEvents[i].waitMinutes = waitMin;
+            if (startMin >= 0) masterEvents[i].serviceStartMinute = startMin;
+            break;
+        }
+    }
 }
 
 void SimulationEngine::runSimulation(Patient inputEvents[], int eventCount) {
     statsService.reset();
     currentMinute = 0;
+    masterEvents = inputEvents;
+    masterEventCount = eventCount;
 
     if (hospital == nullptr) return;
 
@@ -29,22 +47,39 @@ void SimulationEngine::runSimulation(Patient inputEvents[], int eventCount) {
         }
     }
 
-    // Vòng lặp thời gian chính chạy từ t = 0 đến totalSimulationMinutes - 1[cite: 2, 4]
+    // Vòng lặp thời gian chính chạy từ t = 0 đến totalSimulationMinutes - 1
     for (currentMinute = 0; currentMinute < config.totalSimulationMinutes; ++currentMinute) {
-        // 1. Tiếp nhận và phân phòng cho bệnh nhân đến tại phút hiện tại[cite: 2, 4]
+        // 1. Tiếp nhận và phân phòng cho bệnh nhân đến tại phút hiện tại
         processArrivals(inputEvents, eventCount);
 
-        // 2. Xử lý bệnh nhân bỏ về do chờ quá ngưỡng T phút[cite: 2, 4]
+        // 2. Xử lý bệnh nhân bỏ về do chờ quá ngưỡng T phút
         processAbandonment();
 
-        // 3. Cập nhật Aging (tăng mức ưu tiên hiệu lực và chuyển từ DSLK sang Heap)[cite: 2, 4]
+        // 3. Cập nhật Aging (tăng mức ưu tiên hiệu lực và chuyển từ DSLK sang Heap)
         processAging();
 
-        // 4. Cập nhật tiến độ khám và gọi bệnh nhân tiếp theo cho phòng rảnh[cite: 2, 4]
+        // 4. Cập nhật tiến độ khám và gọi bệnh nhân tiếp theo cho phòng rảnh
         processRoomTick();
 
-        // 5. In trạng thái tóm tắt các phòng tại phút hiện tại[cite: 2, 4]
-        printMinuteStatus();
+        // Cập nhật độ dài hàng đợi lớn nhất tại phút hiện tại
+        for (int i = 0; i < roomCount; ++i) {
+            if (rooms[i] != nullptr) {
+                int qLen = rooms[i]->getRegularQueue().size() + rooms[i]->getPriorityHeap().size();
+                statsService.updateMaxQueueLength(qLen);
+            }
+        }
+
+        // 5. In trạng thái các phòng nếu chọn chế độ theo dõi từng phút
+        if (logMode == LogMode::MINUTE_TICK) {
+            printMinuteStatus();
+        }
+    }
+
+    // Đảm bảo cập nhật maxQueueLength từ tất cả các phòng
+    for (int i = 0; i < roomCount; ++i) {
+        if (rooms[i] != nullptr) {
+            statsService.updateMaxQueueLength(rooms[i]->getMaxQueueLength());
+        }
     }
 }
 
@@ -68,17 +103,29 @@ void SimulationEngine::processArrivals(Patient arrivals[], int count) {
 
             if (targetRoom == nullptr) {
                 p.status = PatientStatus::REJECTED;
+                arrivals[i].status = PatientStatus::REJECTED;
                 statsService.recordRejected(basePrio);
+                if (logMode == LogMode::EVENTS) {
+                    std::cout << "  [Phút " << std::setw(3) << currentMinute << "] TỪ CHỐI TIẾP NHẬN: Bệnh nhân "
+                              << p.id << " (" << p.fullName << ") do không có phòng khám chuyên khoa " << p.specialty << ".\n";
+                }
             } else {
                 statsService.recordArrival(basePrio);
                 targetRoom->addPatient(p, config.priorityEnabled);
+                if (logMode == LogMode::EVENTS) {
+                    bool inHeap = config.priorityEnabled && (p.priority != PriorityLevel::NORMAL);
+                    std::cout << "  [Phút " << std::setw(3) << currentMinute << "] Tiếp nhận: "
+                              << p.id << " (" << p.fullName << " - " << StatisticsService::priorityNameVi(basePrio)
+                              << ") ➔ Phân vào Phòng " << targetRoom->getRoomId() << " ("
+                              << (inHeap ? "Hàng ưu tiên Heap" : "Hàng thường DSLK") << ").\n";
+                }
             }
         }
     }
 }
 
 void SimulationEngine::processAbandonment() {
-    if (hospital == nullptr || config.waitThresholdT < 0) return;
+    if (hospital == nullptr || config.waitThresholdT <= 0) return;
 
     int roomCount = hospital->getRoomCount();
     Room** rooms = hospital->getRooms();
@@ -87,7 +134,7 @@ void SimulationEngine::processAbandonment() {
         Room* r = rooms[i];
         if (r == nullptr) continue;
 
-        // 1. Kiểm tra hàng đợi thường (LinkedQueue)[cite: 2, 3]
+        // 1. Kiểm tra hàng đợi thường (LinkedQueue)
         LinkedQueue& regQueue = r->getRegularQueue();
         int regSize = regQueue.size();
         for (int k = 0; k < regSize; ++k) {
@@ -97,13 +144,20 @@ void SimulationEngine::processAbandonment() {
                 if (waited > config.waitThresholdT) {
                     p.waitMinutes = waited;
                     p.status = PatientStatus::LEFT;
+                    statsService.recordLeft(static_cast<int>(p.priority));
+                    updateMasterPatient(p.id, PatientStatus::LEFT, waited, -1);
+                    if (logMode == LogMode::EVENTS) {
+                        std::cout << "  [Phút " << std::setw(3) << currentMinute << "] BỎ VỀ: Bệnh nhân "
+                                  << p.id << " (" << p.fullName << ") rời hàng chờ Phòng " << r->getRoomId()
+                                  << " do chờ quá " << waited << " phút (vượt ngưỡng T = " << config.waitThresholdT << " phút).\n";
+                    }
                 } else {
-                    regQueue.enqueue(p); // Chưa quá T, giữ nguyên thứ tự FIFO[cite: 2]
+                    regQueue.enqueue(p); // Chưa quá T, giữ nguyên thứ tự FIFO
                 }
             }
         }
 
-        // 2. Kiểm tra hàng đợi ưu tiên (BinaryMinHeap)[cite: 2, 3]
+        // 2. Kiểm tra hàng đợi ưu tiên (BinaryMinHeap)
         BinaryMinHeap& prioHeap = r->getPriorityHeap();
         int heapSize = prioHeap.size();
         if (heapSize > 0) {
@@ -121,8 +175,16 @@ void SimulationEngine::processAbandonment() {
             for (int idx = 0; idx < removeCount; ++idx) {
                 Patient removedP;
                 if (prioHeap.removeById(idsToRemove[idx], removedP)) {
-                    removedP.waitMinutes = currentMinute - removedP.arrivalMinute;
+                    int waited = currentMinute - removedP.arrivalMinute;
+                    removedP.waitMinutes = waited;
                     removedP.status = PatientStatus::LEFT;
+                    statsService.recordLeft(static_cast<int>(removedP.priority));
+                    updateMasterPatient(removedP.id, PatientStatus::LEFT, waited, -1);
+                    if (logMode == LogMode::EVENTS) {
+                        std::cout << "  [Phút " << std::setw(3) << currentMinute << "] BỎ VỀ: Bệnh nhân "
+                                  << removedP.id << " (" << removedP.fullName << ") rời hàng ưu tiên Phòng " << r->getRoomId()
+                                  << " do chờ quá " << waited << " phút (vượt ngưỡng T = " << config.waitThresholdT << " phút).\n";
+                    }
                 }
             }
 
@@ -144,7 +206,7 @@ void SimulationEngine::processAging() {
         LinkedQueue& regQueue = r->getRegularQueue();
         BinaryMinHeap& prioHeap = r->getPriorityHeap();
 
-        // 1. Cập nhật Aging cho bệnh nhân trong Heap[cite: 2, 3]
+        // 1. Cập nhật Aging cho bệnh nhân trong Heap
         int heapSize = prioHeap.size();
         Patient* rawArr = prioHeap.getRawArray();
         bool heapChanged = false;
@@ -155,14 +217,19 @@ void SimulationEngine::processAging() {
                 if (rawArr[idx].effectivePriority > static_cast<int>(PriorityLevel::EMERGENCY)) {
                     rawArr[idx].effectivePriority--;
                     heapChanged = true;
+                    if (logMode == LogMode::EVENTS) {
+                        std::cout << "  [Phút " << std::setw(3) << currentMinute << "] TĂNG ƯU TIÊN (Aging): Bệnh nhân "
+                                  << rawArr[idx].id << " chờ " << waited << " phút ➔ Nâng mức ưu tiên lên Cấp "
+                                  << rawArr[idx].effectivePriority << " (Heap Phòng " << r->getRoomId() << ").\n";
+                    }
                 }
             }
         }
         if (heapChanged) {
-            prioHeap.buildHeap(); // Tái lập Min-Heap bottom-up O(P)[cite: 3, 4]
+            prioHeap.buildHeap(); // Tái lập Min-Heap bottom-up O(P)
         }
 
-        // 2. Cập nhật Aging cho bệnh nhân ở hàng thường (DSLK) -> chuyển sang Heap nếu đủ mức[cite: 2, 4]
+        // 2. Cập nhật Aging cho bệnh nhân ở hàng thường (DSLK) -> chuyển sang Heap nếu đủ mức
         int regSize = regQueue.size();
         for (int k = 0; k < regSize; ++k) {
             Patient p;
@@ -174,7 +241,12 @@ void SimulationEngine::processAging() {
                     }
                     if (config.priorityEnabled && p.effectivePriority < static_cast<int>(PriorityLevel::NORMAL)) {
                         prioHeap.insert(p);
-                        continue; // Đã chuyển sang Heap, không đẩy lại DSLK[cite: 2]
+                        if (logMode == LogMode::EVENTS) {
+                            std::cout << "  [Phút " << std::setw(3) << currentMinute << "] TĂNG ƯU TIÊN (Aging): Bệnh nhân "
+                                      << p.id << " (" << p.fullName << ") chờ " << waited << " phút ➔ Chuyển từ DSLK sang Heap Phòng "
+                                      << r->getRoomId() << " (Cấp " << p.effectivePriority << ").\n";
+                        }
+                        continue; // Đã chuyển sang Heap, không đẩy lại DSLK
                     }
                 }
                 regQueue.enqueue(p);
@@ -193,15 +265,25 @@ void SimulationEngine::processRoomTick() {
         Room* r = rooms[i];
         if (r == nullptr) continue;
 
-        // 1. Nếu phòng đang bận, giảm 1 phút khám; xong thì giải phóng phòng[cite: 2, 3]
+        // 1. Nếu phòng đang bận, giảm 1 phút khám; xong thì giải phóng phòng
         if (r->isBusy()) {
             r->updateServiceTick();
-            if (!r->isBusy()) {
+            if (r->isServiceComplete()) {
+                if (r->getCurrentPatient() != nullptr) {
+                    if (logMode == LogMode::EVENTS) {
+                        std::cout << "  [Phút " << std::setw(3) << currentMinute << "] Khám xong: Phòng "
+                                  << r->getRoomId() << " hoàn tất ca khám của "
+                                  << r->getCurrentPatient()->id << " (" << r->getCurrentPatient()->fullName << ").\n";
+                    }
+                    updateMasterPatient(r->getCurrentPatient()->id, PatientStatus::COMPLETED,
+                                        r->getCurrentPatient()->waitMinutes,
+                                        r->getCurrentPatient()->serviceStartMinute);
+                }
                 r->finishCurrentService();
             }
         }
 
-        // 2. Nếu phòng rảnh, gọi bệnh nhân tiếp theo từ hàng đợi[cite: 2, 3]
+        // 2. Nếu phòng rảnh, gọi bệnh nhân tiếp theo từ hàng đợi
         if (!r->isBusy()) {
             Patient* nextP = r->fetchNextPatient(config.priorityEnabled);
             if (nextP != nullptr) {
@@ -209,8 +291,13 @@ void SimulationEngine::processRoomTick() {
                 nextP->waitMinutes = currentMinute - nextP->arrivalMinute;
                 nextP->status = PatientStatus::IN_SERVICE;
 
-                // Ghi nhận thống kê khi bệnh nhân được gọi khám (dùng mức ưu tiên gốc)
                 statsService.recordServed(static_cast<int>(nextP->priority), nextP->waitMinutes);
+                updateMasterPatient(nextP->id, PatientStatus::IN_SERVICE, nextP->waitMinutes, currentMinute);
+                if (logMode == LogMode::EVENTS) {
+                    std::cout << "  [Phút " << std::setw(3) << currentMinute << "] Bắt đầu khám: Phòng "
+                              << r->getRoomId() << " mời " << nextP->id << " (" << nextP->fullName
+                              << ", STT " << nextP->ticketNumber << ", dự kiến " << nextP->serviceDuration << " phút).\n";
+                }
                 r->startService(nextP, currentMinute);
             }
         }
@@ -220,7 +307,7 @@ void SimulationEngine::processRoomTick() {
 void SimulationEngine::printMinuteStatus() const {
     if (hospital == nullptr) return;
 
-    std::cout << "[Phut " << std::setw(3) << currentMinute << "] ";
+    std::cout << "  [Phút " << std::setw(3) << currentMinute << "] ";
     int roomCount = hospital->getRoomCount();
     Room** rooms = hospital->getRooms();
 
@@ -228,10 +315,16 @@ void SimulationEngine::printMinuteStatus() const {
         Room* r = rooms[i];
         if (r == nullptr) continue;
 
-        std::cout << r->getRoomId() << "(" << r->getSpecialty() << "): "
-                  << (r->isBusy() ? "Dang kham" : "Ranh")
-                  << " [Heap:" << r->getPriorityHeap().size()
-                  << ", Thuong:" << r->getRegularQueue().size() << "] | ";
+        std::cout << r->getRoomId() << " (" << r->getSpecialty() << "): ";
+        if (r->isBusy() && r->getCurrentPatient() != nullptr) {
+            std::cout << "Đang khám(" << r->getCurrentPatient()->id
+                      << ", còn " << r->getRemainingServiceTime() << "p)";
+        } else {
+            std::cout << "Rảnh";
+        }
+        std::cout << " [Heap:" << r->getPriorityHeap().size()
+                  << ", DSLK:" << r->getRegularQueue().size() << "]";
+        if (i < roomCount - 1) std::cout << " │ ";
     }
     std::cout << "\n";
 }

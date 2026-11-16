@@ -101,3 +101,23 @@ LinkedQueue& Room::getRegularQueue() {
 BinaryMinHeap& Room::getPriorityHeap() {
     return priorityHeap;
 }
+
+int Room::getMaxQueueLength() const {
+    return maxQueueLength;
+}
+
+int Room::getTotalServedCount() const {
+    return totalServedCount;
+}
+
+bool Room::isServiceComplete() const {
+    return currentPatient != nullptr && remainingServiceTime == 0;
+}
+
+const Patient* Room::getCurrentPatient() const {
+    return currentPatient;
+}
+
+int Room::getRemainingServiceTime() const {
+    return remainingServiceTime;
+}

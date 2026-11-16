@@ -1,0 +1,74 @@
+[
+{
+  "directory": "/Users/nhtqnh/Documents/BT_CTDL/build",
+  "command": "/usr/bin/clang++  -I/Users/nhtqnh/Documents/BT_CTDL/include -g -std=c++17 -arch arm64 -Wall -Wextra -Wpedantic -o CMakeFiles/BT_CTDL.dir/main.cpp.o -c /Users/nhtqnh/Documents/BT_CTDL/main.cpp",
+  "file": "/Users/nhtqnh/Documents/BT_CTDL/main.cpp",
+  "output": "CMakeFiles/BT_CTDL.dir/main.cpp.o"
+},
+{
+  "directory": "/Users/nhtqnh/Documents/BT_CTDL/build",
+  "command": "/usr/bin/clang++  -I/Users/nhtqnh/Documents/BT_CTDL/include -g -std=c++17 -arch arm64 -Wall -Wextra -Wpedantic -o CMakeFiles/BT_CTDL.dir/src/models/Patient.cpp.o -c /Users/nhtqnh/Documents/BT_CTDL/src/models/Patient.cpp",
+  "file": "/Users/nhtqnh/Documents/BT_CTDL/src/models/Patient.cpp",
+  "output": "CMakeFiles/BT_CTDL.dir/src/models/Patient.cpp.o"
+},
+{
+  "directory": "/Users/nhtqnh/Documents/BT_CTDL/build",
+  "command": "/usr/bin/clang++  -I/Users/nhtqnh/Documents/BT_CTDL/include -g -std=c++17 -arch arm64 -Wall -Wextra -Wpedantic -o CMakeFiles/BT_CTDL.dir/src/models/Room.cpp.o -c /Users/nhtqnh/Documents/BT_CTDL/src/models/Room.cpp",
+  "file": "/Users/nhtqnh/Documents/BT_CTDL/src/models/Room.cpp",
+  "output": "CMakeFiles/BT_CTDL.dir/src/models/Room.cpp.o"
+},
+{
+  "directory": "/Users/nhtqnh/Documents/BT_CTDL/build",
+  "command": "/usr/bin/clang++  -I/Users/nhtqnh/Documents/BT_CTDL/include -g -std=c++17 -arch arm64 -Wall -Wextra -Wpedantic -o CMakeFiles/BT_CTDL.dir/src/structures/LinkedQueue.cpp.o -c /Users/nhtqnh/Documents/BT_CTDL/src/structures/LinkedQueue.cpp",
+  "file": "/Users/nhtqnh/Documents/BT_CTDL/src/structures/LinkedQueue.cpp",
+  "output": "CMakeFiles/BT_CTDL.dir/src/structures/LinkedQueue.cpp.o"
+},
+{
+  "directory": "/Users/nhtqnh/Documents/BT_CTDL/build",
+  "command": "/usr/bin/clang++  -I/Users/nhtqnh/Documents/BT_CTDL/include -g -std=c++17 -arch arm64 -Wall -Wextra -Wpedantic -o CMakeFiles/BT_CTDL.dir/src/structures/BinaryMinHeap.cpp.o -c /Users/nhtqnh/Documents/BT_CTDL/src/structures/BinaryMinHeap.cpp",
+  "file": "/Users/nhtqnh/Documents/BT_CTDL/src/structures/BinaryMinHeap.cpp",
+  "output": "CMakeFiles/BT_CTDL.dir/src/structures/BinaryMinHeap.cpp.o"
+},
+{
+  "directory": "/Users/nhtqnh/Documents/BT_CTDL/build",
+  "command": "/usr/bin/clang++  -I/Users/nhtqnh/Documents/BT_CTDL/include -g -std=c++17 -arch arm64 -Wall -Wextra -Wpedantic -o CMakeFiles/BT_CTDL.dir/src/algorithms/SortUtils.cpp.o -c /Users/nhtqnh/Documents/BT_CTDL/src/algorithms/SortUtils.cpp",
+  "file": "/Users/nhtqnh/Documents/BT_CTDL/src/algorithms/SortUtils.cpp",
+  "output": "CMakeFiles/BT_CTDL.dir/src/algorithms/SortUtils.cpp.o"
+},
+{
+  "directory": "/Users/nhtqnh/Documents/BT_CTDL/build",
+  "command": "/usr/bin/clang++  -I/Users/nhtqnh/Documents/BT_CTDL/include -g -std=c++17 -arch arm64 -Wall -Wextra -Wpedantic -o CMakeFiles/BT_CTDL.dir/src/services/Hospital.cpp.o -c /Users/nhtqnh/Documents/BT_CTDL/src/services/Hospital.cpp",
+  "file": "/Users/nhtqnh/Documents/BT_CTDL/src/services/Hospital.cpp",
+  "output": "CMakeFiles/BT_CTDL.dir/src/services/Hospital.cpp.o"
+},
+{
+  "directory": "/Users/nhtqnh/Documents/BT_CTDL/build",
+  "command": "/usr/bin/clang++  -I/Users/nhtqnh/Documents/BT_CTDL/include -g -std=c++17 -arch arm64 -Wall -Wextra -Wpedantic -o CMakeFiles/BT_CTDL.dir/src/services/SimulationEngine.cpp.o -c /Users/nhtqnh/Documents/BT_CTDL/src/services/SimulationEngine.cpp",
+  "file": "/Users/nhtqnh/Documents/BT_CTDL/src/services/SimulationEngine.cpp",
+  "output": "CMakeFiles/BT_CTDL.dir/src/services/SimulationEngine.cpp.o"
+},
+{
+  "directory": "/Users/nhtqnh/Documents/BT_CTDL/build",
+  "command": "/usr/bin/clang++  -I/Users/nhtqnh/Documents/BT_CTDL/include -g -std=c++17 -arch arm64 -Wall -Wextra -Wpedantic -o CMakeFiles/BT_CTDL.dir/src/services/StatisticsService.cpp.o -c /Users/nhtqnh/Documents/BT_CTDL/src/services/StatisticsService.cpp",
+  "file": "/Users/nhtqnh/Documents/BT_CTDL/src/services/StatisticsService.cpp",
+  "output": "CMakeFiles/BT_CTDL.dir/src/services/StatisticsService.cpp.o"
+},
+{
+  "directory": "/Users/nhtqnh/Documents/BT_CTDL/build",
+  "command": "/usr/bin/clang++  -I/Users/nhtqnh/Documents/BT_CTDL/include -g -std=c++17 -arch arm64 -Wall -Wextra -Wpedantic -o CMakeFiles/BT_CTDL.dir/src/services/ScenarioRunner.cpp.o -c /Users/nhtqnh/Documents/BT_CTDL/src/services/ScenarioRunner.cpp",
+  "file": "/Users/nhtqnh/Documents/BT_CTDL/src/services/ScenarioRunner.cpp",
+  "output": "CMakeFiles/BT_CTDL.dir/src/services/ScenarioRunner.cpp.o"
+},
+{
+  "directory": "/Users/nhtqnh/Documents/BT_CTDL/build",
+  "command": "/usr/bin/clang++  -I/Users/nhtqnh/Documents/BT_CTDL/include -g -std=c++17 -arch arm64 -Wall -Wextra -Wpedantic -o CMakeFiles/BT_CTDL.dir/src/services/FileManager.cpp.o -c /Users/nhtqnh/Documents/BT_CTDL/src/services/FileManager.cpp",
+  "file": "/Users/nhtqnh/Documents/BT_CTDL/src/services/FileManager.cpp",
+  "output": "CMakeFiles/BT_CTDL.dir/src/services/FileManager.cpp.o"
+},
+{
+  "directory": "/Users/nhtqnh/Documents/BT_CTDL/build",
+  "command": "/usr/bin/clang++  -I/Users/nhtqnh/Documents/BT_CTDL/include -g -std=c++17 -arch arm64 -Wall -Wextra -Wpedantic -o CMakeFiles/BT_CTDL.dir/src/ui/Menu.cpp.o -c /Users/nhtqnh/Documents/BT_CTDL/src/ui/Menu.cpp",
+  "file": "/Users/nhtqnh/Documents/BT_CTDL/src/ui/Menu.cpp",
+  "output": "CMakeFiles/BT_CTDL.dir/src/ui/Menu.cpp.o"
+}
+]

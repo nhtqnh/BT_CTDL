@@ -53,6 +53,14 @@ int Hospital::createRooms(int numberOfRooms,
     return created;
 }
 
+void Hospital::clearRooms() {
+    for (int i = 0; i < count_; ++i) {
+        delete rooms_[i];
+        rooms_[i] = nullptr;
+    }
+    count_ = 0;
+}
+
 int Hospital::getRoomCount() const {
     return count_;
 }
